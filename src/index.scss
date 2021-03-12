@@ -1,0 +1,33 @@
+:root {
+  --background: #232530;
+
+  --fore-ground: var(----background);
+
+
+}
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: inherit;
+  &:before,
+  &:after {
+    box-sizing: inherit;
+  }
+}
+body {
+  height: 100%;
+  font-family: -apple-system,  'Segoe UI', 'Roboto', 'Oxygen', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #F5F9FF;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
