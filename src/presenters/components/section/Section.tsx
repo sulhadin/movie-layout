@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { TSection } from '../../../types'
 import getSection from './helpers/getSection'
 import { SectionEnums } from '../../../enums/SectionEnums'
+import { Row, Col } from '../../../components/grid/Grid'
+import { FavoriteButton, ImageContent, ShortInfo, Image } from './styled'
 
 interface ISection {
     sectionType: SectionEnums
@@ -20,18 +22,24 @@ const Section: React.FC<ISection> = ({ sectionType }) => {
         return <>Loading...</>
     }
 
-    console.log('section' + sectionType.toString(), section)
-
     return (
-        <div className="row">
-            {/*<Test />*/}
-            {section.map((m) => (
-                <div className="column" key={m.id}>
-                    <img src={`images/${m.image}`} alt={m.subTitle} />
-                    {m.title}{' '}
-                </div>
+        <Row gutter={8}>
+            {section.map((item) => (
+                <Col xl={4} md={3} sm={2} key={item.id}>
+                    <ImageContent>
+                        <FavoriteButton favorite={true} />
+                        <Image
+                            src={`assets/images/${item.image}`}
+                            alt={item.subTitle}
+                        />
+                        <ShortInfo>
+                            <p>{item.title}</p>
+                            <p>{item.subTitle}</p>
+                        </ShortInfo>
+                    </ImageContent>
+                </Col>
             ))}
-        </div>
+        </Row>
     )
 }
 
