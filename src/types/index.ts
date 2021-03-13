@@ -12,3 +12,8 @@ export type TSection = {
     title: string
     url: string
 }
+
+export type TSections = {
+    id: string
+    data: TSection[]
+}

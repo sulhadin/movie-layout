@@ -21,6 +21,7 @@ module.exports = {
                     from: path.resolve(__dirname, 'public/favicon.ico'),
                     to: path.resolve(__dirname, 'dist/favicon.ico'),
                 },
+                { from: 'src/assets/images', to: 'images' },
             ],
         }),
         new HtmlWebpackPlugin({
