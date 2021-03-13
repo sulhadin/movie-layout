@@ -1,9 +1,13 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig } from 'axios'
 
-class HttpClient {
-    instance: AxiosInstance
+declare module 'axios' {
+    interface AxiosResponse<T = any> extends Promise<T> {}
+}
 
-    constructor(baseURL: string) {
+abstract class HttpClient {
+    protected readonly instance: AxiosInstance
+
+    protected constructor(baseURL: string) {
         this.instance = axios.create({
             baseURL,
         })
@@ -12,28 +16,28 @@ class HttpClient {
         this._initializeRequestInterceptor()
     }
 
-    _initializeResponseInterceptor = () => {
+    private _initializeResponseInterceptor = () => {
         this.instance.interceptors.response.use(
             this._handleResponse,
             this._handleError
         )
     }
 
-    _initializeRequestInterceptor = (): void => {
+    private _initializeRequestInterceptor = (): void => {
         this.instance.interceptors.request.use(
             this._handleRequest,
             this._handleError
         )
     }
 
-    _handleRequest = (config: AxiosRequestConfig) => {
+    private _handleRequest = (config: AxiosRequestConfig) => {
         // Some implementation for header.
         return config
     }
 
-    _handleResponse = ({ data }: AxiosResponse) => data
+    private _handleResponse = ({ data }: AxiosResponse) => data
 
-    _handleError = (error: any) => Promise.reject(error)
+    protected _handleError = (error: any) => Promise.reject(error)
 }
 
 export default HttpClient

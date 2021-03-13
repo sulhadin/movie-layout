@@ -1,5 +1,6 @@
 :root {
   --background: #232530;
+  --color: #FFFFFF;
   --fore-ground: var(----background);
 
 
@@ -11,7 +12,9 @@
 body {
   margin: 0;
   font-family: -apple-system,  'Segoe UI', 'Roboto', 'Oxygen', sans-serif;
-  background: var(--fore-ground);
+  background: var(--background);
+  color: var(--color);
+
 }
 
 #root {
