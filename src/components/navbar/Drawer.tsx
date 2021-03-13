@@ -10,7 +10,7 @@ const Ul = styled.ul<IUL>`
     list-style: none;
     display: flex;
     flex-flow: row nowrap;
-
+    z-index: 1;
     li {
         padding: 18px 10px;
     }
