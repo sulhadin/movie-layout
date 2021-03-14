@@ -1,3 +1,3 @@
 export interface ILayout {
-    background: string
+  background: string
 }

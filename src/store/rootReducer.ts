@@ -1,9 +1,9 @@
 // src/app/rootReducer.ts
 import { combineReducers } from '@reduxjs/toolkit'
-import reducers from '../reducers'
+import reducers from './index'
 
 const rootReducer = combineReducers({
-    ...reducers,
+  ...reducers,
 })
 
 export default rootReducer

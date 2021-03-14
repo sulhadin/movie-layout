@@ -10,44 +10,44 @@ import sortBy from 'lodash/sortBy'
  *
  */
 export function transformData(collections: ICollection[]): ICollection[] {
-    console.log('collections', collections)
+  console.log('collections', collections)
 
-    const newCollections = collections.map((collection) => {
-        const data = collection.data.map((item) => {
-            return {
-                ...item,
-                uId: `${collection.id}_${item.id}`,
-                type: collection.id,
-            }
-        })
-
-        return {
-            ...collection,
-            data,
-        }
+  const newCollections = collections.map((collection) => {
+    const data = collection.data.map((item) => {
+      return {
+        ...item,
+        uId: `${collection.id}_${item.id}`,
+        type: collection.id,
+      }
     })
 
-    return sortBy(newCollections, ['order'])
+    return {
+      ...collection,
+      data,
+    }
+  })
+
+  return sortBy(newCollections, ['order'])
 }
 
 export async function getSections(): Promise<ICollection[]> {
-    const movies = await MovieApi.getSections()
+  const movies = await MovieApi.getSections()
 
-    return transformData(movies)
+  return transformData(movies)
 }
 
 export function getFavoritesBy(
-    collections: ICollection[],
-    favorites: string[]
+  collections: ICollection[],
+  favorites: string[]
 ): IMovie[] {
-    let movies: IMovie[] = []
+  let movies: IMovie[] = []
 
-    collections.forEach((collection) => {
-        movies = [
-            ...movies,
-            ...collection.data.filter((movie) => favorites.includes(movie.uId)),
-        ]
-    })
+  collections.forEach((collection) => {
+    movies = [
+      ...movies,
+      ...collection.data.filter((movie) => favorites.includes(movie.uId)),
+    ]
+  })
 
-    return movies
+  return movies
 }

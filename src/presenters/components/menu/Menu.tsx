@@ -4,18 +4,18 @@ import getMenus from './helpers/getMenus'
 import Navbar from '../../../components/navbar/Navbar'
 
 const Menu: React.FC = () => {
-    const [menus, setMenus] = useState<TMenu[]>()
-    useEffect(() => {
-        getMenus().then((response) => {
-            setMenus(response)
-        })
-    }, [])
+  const [menus, setMenus] = useState<TMenu[]>()
+  useEffect(() => {
+    getMenus().then((response) => {
+      setMenus(response)
+    })
+  }, [])
 
-    if (!menus) {
-        return <>Loading...</>
-    }
+  if (!menus) {
+    return <>Loading...</>
+  }
 
-    return <Navbar items={menus} />
+  return <Navbar items={menus} />
 }
 
 export default Menu

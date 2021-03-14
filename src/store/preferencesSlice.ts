@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from '../app/store'
+import { RootState } from './store'
 import { loadState } from './helpers/localStorage'
 import { LocalStateKey } from '../enums/LocalStateKey'
 import { Preferences, PreferenceState } from '../types/preferences'
@@ -9,23 +9,23 @@ const persistedState = loadState<Preferences>(LocalStateKey.PREFERENCES)
 
 // Define the initial state using that type
 const initialState: PreferenceState = {
-    favorites: [],
-    ...(persistedState?.preferences ?? {}),
+  favorites: [],
+  ...(persistedState?.preferences ?? {}),
 }
 
-export const preferenceStateSlice = createSlice({
-    name: 'preferences',
+export const preferences = createSlice({
+  name: 'preferences',
 
-    // `createSlice` will infer the state type from the `initialState` argument
-    initialState,
-    reducers: {
-        saveFavorite: (state, action: PayloadAction<string[]>) => {
-            state.favorites = action.payload
-        },
+  // `createSlice` will infer the state type from the `initialState` argument
+  initialState,
+  reducers: {
+    saveFavorite: (state, action: PayloadAction<string[]>) => {
+      state.favorites = action.payload
     },
+  },
 })
 
-export const { saveFavorite } = preferenceStateSlice.actions
+export const { saveFavorite } = preferences.actions
 
 // Other code such as selectors can use the imported `RootState` type
 // Since this is a small project, there is nothing harm using this.
@@ -33,4 +33,4 @@ export const { saveFavorite } = preferenceStateSlice.actions
 // if other states are updated, those ones will trigger the render and components will be rendered unnecessarily.
 export const selectPreferences = (state: RootState) => state.preferences
 
-export default preferenceStateSlice.reducer
+export default preferences.reducer

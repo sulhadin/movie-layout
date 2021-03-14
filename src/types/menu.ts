@@ -1,5 +1,5 @@
 export type TMenu = {
-    target: string
-    title: string
-    url: string
+  target: string
+  title: string
+  url: string
 }
