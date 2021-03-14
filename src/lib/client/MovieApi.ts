@@ -1,12 +1,13 @@
 import HttpClient from './HttpClient'
-import { TMenu, TSections } from '../../types'
+import { IMovies } from '../../types/movie'
+import { TMenu } from '../../types/menu'
 
 class MovieApi extends HttpClient {
     public constructor() {
         super('https://dtv-projects.firebaseio.com')
     }
     public getMenus = () => this.instance.get<TMenu[]>('/menu.json')
-    public getSections = () => this.instance.get<TSections[]>('/sections.json')
+    public getSections = () => this.instance.get<IMovies[]>('/sections.json')
 }
 
 const movieApi = new MovieApi()

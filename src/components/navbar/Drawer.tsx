@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { TMenu } from '../../types'
+import { TMenu } from '../../types/menu'
 
 interface IUL {
     open: boolean

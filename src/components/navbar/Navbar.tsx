@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Drawer from './Drawer'
-import { TMenu } from '../../types'
+import { TMenu } from '../../types/menu'
 import { StyledBurger } from './styled'
 
 interface INavbar {

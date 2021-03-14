@@ -1,40 +1,29 @@
-import React, { useEffect, useState } from 'react'
-import { TSection } from '../../../types'
-import getSection from './helpers/getSection'
-import { SectionEnums } from '../../../enums/SectionEnums'
+import React from 'react'
+import { IMovie } from '../../../types/movie'
 import { Row, Col } from '../../../components/grid/Grid'
 import { FavoriteButton, ImageContent, ShortInfo, Image } from './styled'
 import { useAppSelector } from '../../../app/hooks'
 import { selectPreferences } from '../../../reducers/preferencesSlice'
 
 interface ISection {
-    sectionType: SectionEnums
-    onItemClick: (section: TSection) => void
+    data: IMovie[]
+    onItemClick: (section: IMovie) => void
 }
 
-// Extract render as SectionGrid
-// Build local state
-const Section: React.FC<ISection> = ({ sectionType, onItemClick }) => {
-    const [section, setSection] = useState<TSection[]>()
-    const state = useAppSelector(selectPreferences)
+const Section: React.FC<ISection> = ({ data, onItemClick }) => {
+    const { favorites } = useAppSelector(selectPreferences)
 
-    useEffect(() => {
-        getSection(sectionType).then((response) => {
-            setSection(response)
-        })
-    }, [sectionType])
-
-    if (!section) {
+    if (!data) {
         return <>Loading...</>
     }
 
     return (
         <Row gutter={8}>
-            {section.map((item) => (
+            {data.map((item) => (
                 <Col xl={4} md={3} sm={2} key={item.id}>
                     <ImageContent>
                         <FavoriteButton
-                            favorite={state.favorites.includes(item.id)}
+                            favorite={favorites.includes(item.uId)}
                             onClick={() => onItemClick(item)}
                         />
                         <Image

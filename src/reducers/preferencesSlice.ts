@@ -2,16 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../app/store'
 import { loadState } from './helpers/localStorage'
 import { LocalStateKey } from '../enums/LocalStateKey'
-
-// Define a type for the slice state
-interface PreferenceState {
-    favorites: number[]
-}
-
-// Define a type for local state.
-interface Preferences {
-    preferences: PreferenceState
-}
+import { Preferences, PreferenceState } from '../types/preferences'
 
 // Gets local state to initialize the first state.
 const persistedState = loadState<Preferences>(LocalStateKey.PREFERENCES)
@@ -28,13 +19,13 @@ export const preferenceStateSlice = createSlice({
     // `createSlice` will infer the state type from the `initialState` argument
     initialState,
     reducers: {
-        saveFavorites: (state, action: PayloadAction<number[]>) => {
+        saveFavorite: (state, action: PayloadAction<string[]>) => {
             state.favorites = action.payload
         },
     },
 })
 
-export const { saveFavorites } = preferenceStateSlice.actions
+export const { saveFavorite } = preferenceStateSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 // Since this is a small project, there is nothing harm using this.
