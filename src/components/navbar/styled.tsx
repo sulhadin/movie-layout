@@ -49,7 +49,7 @@ export const MenuUl = styled.ul<IMenu>`
     flex-flow: row nowrap;
     z-index: 1;
     margin: 0;
-    padding: 0;
+    padding: 10px;
 
     li {
         padding: 15px 10px;

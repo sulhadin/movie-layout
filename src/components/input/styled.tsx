@@ -8,9 +8,9 @@ export const InputText = styled.input`
     outline: none;
     background: none;
     border: none;
-    font-size: 1rem;
-    color: #fff;
-    height: 30px;
+    font-size: 1.3rem;
+    color: var(--fore-color);
+    height: 40px;
 `
 
 export const Content = styled.div`
@@ -19,13 +19,15 @@ export const Content = styled.div`
     width: 100%;
     overflow: hidden;
     border-bottom: 2px solid #fff;
-    height: 30px;
+    height: 40px;
+    background: var(--background);
+    opacity: 0.8;
 `
 
 export const Icon = styled.div`
     border: 0;
     padding: 0;
-    margin: 0;
+    margin: 5px 0 0 0;
     grid-column: 4;
     grid-row: 1;
     height: 30px;

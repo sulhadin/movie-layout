@@ -1,18 +1,17 @@
 import React from 'react'
 import Menu from '../menu/Menu'
 import Search from '../search/Search'
-import { Middle, Bar } from './styled'
+import { Bar } from './styled'
 
 const Header = () => {
     return (
         <Bar>
-            <Middle>
+            <div>
                 <Menu />
-            </Middle>
-
-            <Middle>
+            </div>
+            <div>
                 <Search />
-            </Middle>
+            </div>
         </Bar>
     )
 }

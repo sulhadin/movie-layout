@@ -12,7 +12,7 @@ const Drawer: React.FC<IDrawer> = ({ open, items }) => {
         <MenuUl open={open}>
             {items.map((item) => (
                 <li key={item.url}>
-                    <a href={'#'}>{item.title}</a>
+                    <a href={item.url}>{item.title}</a>
                 </li>
             ))}
         </MenuUl>
