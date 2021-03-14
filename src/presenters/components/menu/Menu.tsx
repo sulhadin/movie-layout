@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { TMenu } from '../../../types/movie'
+import { TMenu } from '../../../types/menu'
 import getMenus from './helpers/getMenus'
 import Navbar from '../../../components/navbar/Navbar'
 

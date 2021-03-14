@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { IMovie } from '../../../types/movie'
-import { getSections } from './helpers/getSection'
+import { getFavoritesBy, getSections } from './helpers/getSection'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import {
     saveFavorite,
     selectPreferences,
 } from '../../../reducers/preferencesSlice'
-import { Container, Title } from '../../home/styled'
+import { Container } from '../../home/styled'
 import Section from './Section'
 import addOrRemoveFavorite from '../../home/helpers/addOrRemoveFavorite'
 import { ISection } from '../../../types/section'
@@ -16,19 +16,37 @@ import { destructureSections } from './helpers/destructureSections'
 // Build local state
 const Sections: React.FC = () => {
     const [sections, setSections] = useState<ISection>()
+    const [data, setData] = useState<IMovie[]>()
+
     const dispatch = useAppDispatch()
     const state = useAppSelector(selectPreferences)
 
     useEffect(() => {
         getSections().then((response) => {
-            const data = destructureSections(response, state.favorites)
-            setSections(data)
+            setData(response)
         })
     }, [])
 
+    console.log('data', data)
+    useEffect(() => {
+        if (data) {
+            const result = destructureSections(data, state.favorites)
+            setSections(result)
+        }
+    }, [data])
+
+    const reloadFavorites = (favorites) => {
+        if (sections && data) {
+            const favoriteList = getFavoritesBy(data, favorites)
+            setSections({ ...sections, favorites: favoriteList })
+        }
+    }
+
     const onItemClick = (movie: IMovie) => {
         const favorites = addOrRemoveFavorite(state.favorites, movie.uId)
+
         dispatch(saveFavorite(favorites))
+        reloadFavorites(favorites)
     }
 
     if (!sections) {
@@ -38,16 +56,25 @@ const Sections: React.FC = () => {
     return (
         <>
             <Container>
-                <Title>Filmler</Title>
-                <Section data={sections.movies} onItemClick={onItemClick} />
+                <Section
+                    title={'Filmler'}
+                    data={sections.movies}
+                    onItemClick={onItemClick}
+                />
             </Container>
             <Container>
-                <Title>Diziler</Title>
-                <Section data={sections.series} onItemClick={onItemClick} />
+                <Section
+                    title={'Diziler'}
+                    data={sections.series}
+                    onItemClick={onItemClick}
+                />
             </Container>
             <Container>
-                <Title>Favoriler</Title>
-                <Section data={sections.favorites} onItemClick={onItemClick} />
+                <Section
+                    title={'Favoriler'}
+                    data={sections.favorites}
+                    onItemClick={onItemClick}
+                />
             </Container>
         </>
     )

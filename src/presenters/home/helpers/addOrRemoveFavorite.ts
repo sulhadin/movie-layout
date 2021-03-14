@@ -5,7 +5,7 @@ export default function addOrRemoveFavorite(
     let newFavorites = [...favorites]
 
     if (favorites.includes(uId)) {
-        newFavorites = [...favorites.filter((movieId) => movieId !== movieId)]
+        newFavorites = [...favorites.filter((movieId) => movieId !== uId)]
     } else {
         newFavorites.push(uId)
     }
