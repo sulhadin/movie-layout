@@ -9,7 +9,9 @@ export interface IMovie {
     url: string
 }
 
-export interface IMovies {
+export interface ICollection {
     id: string
+    order: number
+    title: string
     data: IMovie[]
 }

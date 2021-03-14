@@ -11,9 +11,8 @@ import Section from './Section'
 import addOrRemoveFavorite from '../../home/helpers/addOrRemoveFavorite'
 import { ISection } from '../../../types/section'
 import { destructureSections } from './helpers/destructureSections'
+import { Display } from '../../../components/display/Display'
 
-// Extract render as SectionGrid
-// Build local state
 const Sections: React.FC = () => {
     const [sections, setSections] = useState<ISection>()
     const [data, setData] = useState<IMovie[]>()
@@ -52,6 +51,15 @@ const Sections: React.FC = () => {
 
     return (
         <>
+            {data?.map((d) => (
+                <Container>
+                    <Section
+                        title={d.title}
+                        data={sections.movies}
+                        onItemClick={onItemClick}
+                    />
+                </Container>
+            ))}
             <Container>
                 <Section
                     title={'Filmler'}
@@ -66,13 +74,15 @@ const Sections: React.FC = () => {
                     onItemClick={onItemClick}
                 />
             </Container>
-            <Container>
-                <Section
-                    title={'Favoriler'}
-                    data={sections.favorites}
-                    onItemClick={onItemClick}
-                />
-            </Container>
+            <Display display={sections.favorites.length >= 3}>
+                <Container>
+                    <Section
+                        title={'Favoriler'}
+                        data={sections.favorites}
+                        onItemClick={onItemClick}
+                    />
+                </Container>
+            </Display>
         </>
     )
 }

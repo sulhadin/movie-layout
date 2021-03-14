@@ -1,5 +1,5 @@
 import HttpClient from './HttpClient'
-import { IMovies } from '../../types/movie'
+import { ICollection } from '../../types/movie'
 import { TMenu } from '../../types/menu'
 
 class MovieApi extends HttpClient {
@@ -7,7 +7,8 @@ class MovieApi extends HttpClient {
         super('https://dtv-projects.firebaseio.com')
     }
     public getMenus = () => this.instance.get<TMenu[]>('/menu.json')
-    public getSections = () => this.instance.get<IMovies[]>('/sections.json')
+    public getSections = () =>
+        this.instance.get<ICollection[]>('/sections.json')
 }
 
 const movieApi = new MovieApi()

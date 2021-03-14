@@ -1,5 +1,5 @@
 import MovieApi from '../../../../lib/client/MovieApi'
-import { IMovie, IMovies } from '../../../../types/movie'
+import { IMovie, ICollection } from '../../../../types/movie'
 import { SectionEnums } from '../../../../enums/SectionEnums'
 
 /**
@@ -7,9 +7,12 @@ import { SectionEnums } from '../../../../enums/SectionEnums'
  * Since the real data must contain real unique ids, this process will no longer be needed.
  *
  * @param sections
+ *
+ *
  */
-export function transformData(sections: IMovies[]): IMovie[] {
+export function transformData(sections: ICollection[]): IMovie[] {
     console.log('sections', sections)
+
     const movies = getSectionBy(sections, SectionEnums.MOVIES)
     const series = getSectionBy(sections, SectionEnums.SERIES)
 
@@ -36,7 +39,7 @@ export async function getSections(): Promise<IMovie[]> {
 export function getSectionBy(sections, sectionId: SectionEnums): IMovie[] {
     const result = sections.find(
         (section) => section.id === sectionId
-    ) as IMovies
+    ) as ICollection
 
     return result.data
 }
