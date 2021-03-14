@@ -1,4 +1,4 @@
-import preferencesSlice from './preferencesSlice'
+import preferencesSlice from './preferencesStore'
 
 export default {
   preferences: preferencesSlice,

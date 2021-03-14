@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { TMenu } from '../../../types/menu'
-import getMenus from './helpers/getMenus'
+import React from 'react'
+
 import Navbar from '../../../components/navbar/Navbar'
+import useMenu from './hooks/useMenu'
 
 const Menu: React.FC = () => {
-  const [menus, setMenus] = useState<TMenu[]>()
-  useEffect(() => {
-    getMenus().then((response) => {
-      setMenus(response)
-    })
-  }, [])
+  const { menus } = useMenu()
 
   if (!menus) {
     return <>Loading...</>

@@ -1,48 +1,12 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { ICollection, IMovie } from '../../../types/movie'
-import { getFavoritesBy, getSections } from './helpers/getSection'
-import { useAppDispatch, useAppSelector } from '../../../store/helpers/hooks'
-import {
-  saveFavorite,
-  selectPreferences,
-} from '../../../store/preferencesSlice'
-import { Container } from '../../home/styled'
+import React from 'react'
+
 import Section from './Section'
-import addOrRemoveFavorite from '../../home/helpers/addOrRemoveFavorite'
+import { Container } from '../../home/styled/styled'
 import { Display } from '../../../components/display/Display'
+import useSections from './hooks/useSections'
 
 const Sections: React.FC = () => {
-  const [favoriteData, setFavoriteData] = useState<IMovie[]>([])
-  const [collection, setCollection] = useState<ICollection[]>()
-  const dispatch = useAppDispatch()
-  const state = useAppSelector(selectPreferences)
-
-  console.log('render')
-
-  useEffect(() => {
-    getSections().then(setCollection)
-  }, [])
-
-  useEffect(() => {
-    reloadFavorites(state.favorites)
-  }, [collection])
-
-  const reloadFavorites = (favorites) => {
-    if (collection) {
-      const favoriteList = getFavoritesBy(collection, favorites)
-      setFavoriteData({ ...favorites, favorites: favoriteList })
-    }
-  }
-
-  const onItemClick = useCallback(
-    (movie: IMovie) => {
-      const favorites = addOrRemoveFavorite(state.favorites, movie.uId)
-
-      dispatch(saveFavorite(favorites))
-      reloadFavorites(favorites)
-    },
-    [state.favorites]
-  )
+  const { favoriteData, collection, onItemClick } = useSections()
 
   if (!collection) {
     return <>Loading...</>

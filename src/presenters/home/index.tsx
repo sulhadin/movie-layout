@@ -1,8 +1,8 @@
 import React from 'react'
 
 import Header from '../components/header/Header'
-import { Caption, Content, Layout } from './styled'
 import Sections from '../components/section/Sections'
+import { Caption, Content, Layout } from './styled/styled'
 
 const background = 'assets/Bg@1X.png'
 

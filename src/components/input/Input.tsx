@@ -1,20 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Icon, InputText, Content } from './styled'
+import useInput from './useInput'
 
 interface IInput {
-  onClick: (value: string) => void
+  callback: (value: string) => void
   placeholder: string
   icon: JSX.Element
 }
-export const Input: React.FC<IInput> = ({ onClick, placeholder, icon }) => {
-  const [inputValue, setValue] = useState<string>('')
-
-  const onKeyPress = (event: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (event.key === 'Enter') {
-      onClick(inputValue)
-      setValue('')
-    }
-  }
+export const Input: React.FC<IInput> = ({ callback, placeholder, icon }) => {
+  const { inputValue, onKeyPress, setValue } = useInput(callback)
 
   return (
     <Content>

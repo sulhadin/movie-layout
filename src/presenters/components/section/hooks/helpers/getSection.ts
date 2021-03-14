@@ -1,5 +1,5 @@
-import MovieApi from '../../../../lib/client/MovieApi'
-import { IMovie, ICollection } from '../../../../types/movie'
+import MovieApi from '../../../../../lib/client/MovieApi'
+import { IMovie, ICollection } from '../../../../../types/movie'
 import sortBy from 'lodash/sortBy'
 /**
  * Created for generate unique id for each movie item.
