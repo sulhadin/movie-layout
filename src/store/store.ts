@@ -12,6 +12,7 @@ const store = configureStore({
   middleware,
 })
 
+// Subscribes the store and saves the current state to localStorage
 store.subscribe(
   throttle(() => {
     saveState(
