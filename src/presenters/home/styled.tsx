@@ -1,8 +1,5 @@
 import styled from 'styled-components'
-
-interface ILayout {
-    background: string
-}
+import { ILayout } from './types'
 
 export const Content = styled.div`
     max-width: 1200px;

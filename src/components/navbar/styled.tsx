@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import React from 'react'
+
 interface IBurger {
     open: boolean
 }
@@ -33,6 +35,50 @@ export const StyledBurger = styled.div<IBurger>`
         }
         &:nth-child(3) {
             transform: ${({ open }) => (open ? 'rotate(-45deg)' : 'rotate(0)')};
+        }
+    }
+`
+
+interface IMenu {
+    open: boolean
+}
+
+export const MenuUl = styled.ul<IMenu>`
+    list-style: none;
+    display: flex;
+    flex-flow: row nowrap;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+
+    li {
+        padding: 15px 10px;
+        display: block;
+        a {
+            padding: 15px 10px;
+            text-decoration: none;
+            color: var(--fore-color);
+            font-size: 20px;
+        }
+        a:hover {
+            background: var(--blue);
+        }
+    }
+
+    @media (max-width: 768px) {
+        flex-flow: column nowrap;
+        background-color: var(--background-secondary);
+        position: fixed;
+        transform: ${({ open }) =>
+            open ? 'translateX(0)' : 'translateX(100%)'};
+        top: -1rem;
+        right: 0;
+        height: 100vh;
+        width: 300px;
+        padding-top: 3.5rem;
+        transition: transform 0.3s ease-in-out;
+        li {
+            color: var(--fore-color);
         }
     }
 `

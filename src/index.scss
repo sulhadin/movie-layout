@@ -1,8 +1,10 @@
 :root {
   --background: #232530;
+  --background-secondary: #3f4251;
   --color: #FFFFFF;
-  --fore-ground: var(----background);
-
+  --blue: #56A4FF;
+  --fore-ground: var(--background);
+  --fore-color: var(--color);
 
 }
 * {

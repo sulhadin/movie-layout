@@ -5,6 +5,7 @@ import { FavoriteButton, ImageContent, ShortInfo, Image } from './styled'
 import { useAppSelector } from '../../../app/hooks'
 import { selectPreferences } from '../../../reducers/preferencesSlice'
 import { Title } from '../../home/styled'
+import { getYear } from './helpers/getYear'
 
 interface ISection {
     data: IMovie[]
@@ -15,13 +16,10 @@ interface ISection {
 const Section: React.FC<ISection> = ({ data, onItemClick, title }) => {
     const { favorites } = useAppSelector(selectPreferences)
 
-    if (!data.length) {
-        return <></>
-    }
-
     return (
         <>
             <Title>{title}</Title>
+
             <Row gutter={8}>
                 {data.map((item) => (
                     <Col xl={4} md={3} sm={2} key={item.id}>
@@ -37,16 +35,12 @@ const Section: React.FC<ISection> = ({ data, onItemClick, title }) => {
                             <ShortInfo>
                                 <p>{item.title}</p>
                                 <p>{item.subTitle}</p>
-                                <p>
-                                    {new Date(
-                                        item.published_date
-                                    ).getFullYear()}
-                                </p>
+                                <p>{getYear(item.published_date)}</p>
                             </ShortInfo>
                         </ImageContent>
                     </Col>
                 ))}
-            </Row>{' '}
+            </Row>
         </>
     )
 }

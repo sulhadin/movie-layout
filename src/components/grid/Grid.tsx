@@ -51,16 +51,16 @@ export const Row = styled.div<IRow>`
 export const Col = styled.div<ICol>`
     // sm
     @media (${device.mobile}) {
-        width: ${(props) => 100 / props.sm}%;
+        max-width: ${(props) => 100 / props.sm}%;
     }
 
     // md
     @media (${device.tablet}) {
-        width: ${(props) => 100 / props.md}%;
+        max-width: ${(props) => 100 / props.md}%;
     }
 
     // xl
     @media (${device.laptop}) {
-        width: ${(props) => 100 / props.xl}%;
+        max-width: ${(props) => 100 / props.xl}%;
     }
 `

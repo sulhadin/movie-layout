@@ -31,7 +31,7 @@ export const FavoriteButton = styled.div<IFavoriteButton>`
         content: '+';
     }
     &:hover {
-        background-color: #5197e9;
+        background-color: var(--blue);
     }
     &:active,
     &:focus {

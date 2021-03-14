@@ -22,12 +22,9 @@ const Sections: React.FC = () => {
     const state = useAppSelector(selectPreferences)
 
     useEffect(() => {
-        getSections().then((response) => {
-            setData(response)
-        })
+        getSections().then(setData)
     }, [])
 
-    console.log('data', data)
     useEffect(() => {
         if (data) {
             const result = destructureSections(data, state.favorites)
