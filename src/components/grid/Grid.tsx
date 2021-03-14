@@ -10,7 +10,7 @@ import styled from 'styled-components'
  */
 
 interface IRow {
-    gutter: number
+    gutter?: number
 }
 
 interface ICol {
@@ -37,13 +37,13 @@ export const Row = styled.div<IRow>`
     flex-wrap: wrap;
     justify-content: center;
 
-    row-gap: ${(props) => props.gutter * 2}px;
-    margin-left: -${(props) => props.gutter}px;
-    margin-right: -${(props) => props.gutter}px;
+    row-gap: ${(props) => (props.gutter ?? 0) * 2}px;
+    margin-left: -${(props) => props.gutter ?? 0}px;
+    margin-right: -${(props) => props.gutter ?? 0}px;
 
     > div {
-        padding-left: ${(props) => props.gutter}px;
-        padding-right: ${(props) => props.gutter}px;
+        padding-left: ${(props) => props.gutter ?? 0}px;
+        padding-right: ${(props) => props.gutter ?? 0}px;
         box-sizing: border-box;
     }
 `

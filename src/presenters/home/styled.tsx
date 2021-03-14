@@ -25,3 +25,8 @@ export const Layout = styled.div<ILayout>`
     background-repeat: no-repeat;
     background-position: center top;
 `
+
+export const Title = styled.h2`
+    font-size: 30px;
+    font-weight: lighter;
+`

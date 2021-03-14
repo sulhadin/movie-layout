@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Icon, InputBox, InputContent } from './styled'
+import { Icon, InputText, Content } from './styled'
 
 interface IInput {
     onClick: (value: string) => void
@@ -17,8 +17,8 @@ export const Input: React.FC<IInput> = ({ onClick, placeholder, icon }) => {
     }
 
     return (
-        <InputContent>
-            <InputBox
+        <Content>
+            <InputText
                 type="text"
                 value={inputValue}
                 onChange={(e) => setValue(e.target.value)}
@@ -26,6 +26,6 @@ export const Input: React.FC<IInput> = ({ onClick, placeholder, icon }) => {
                 onKeyPress={onKeyPress}
             />
             <Icon>{icon}</Icon>
-        </InputContent>
+        </Content>
     )
 }

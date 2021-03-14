@@ -11,6 +11,9 @@ const Ul = styled.ul<IUL>`
     display: flex;
     flex-flow: row nowrap;
     z-index: 1;
+    margin: 0;
+    padding: 0;
+
     li {
         padding: 18px 10px;
     }
