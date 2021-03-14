@@ -16,16 +16,15 @@ export default function useSections() {
   const state = useAppSelector(selectPreferences)
 
   useEffect(() => {
-    getSections().then(setCollection)
+    getSections().then((response) => {
+      setCollection(response)
+      reloadFavorites(state.favorites, response)
+    })
   }, [])
 
-  useEffect(() => {
-    reloadFavorites(state.favorites)
-  }, [collection])
-
-  const reloadFavorites = (favorites) => {
+  const reloadFavorites = (favorites, data) => {
     if (collection) {
-      const favoriteList = getFavoritesBy(collection, favorites)
+      const favoriteList = getFavoritesBy(data, favorites)
       setFavoriteData({ ...favorites, favorites: favoriteList })
     }
   }
@@ -35,7 +34,7 @@ export default function useSections() {
       const favorites = addOrRemoveFavorite(state.favorites, movie.uId)
 
       dispatch(saveFavorite(favorites))
-      reloadFavorites(favorites)
+      reloadFavorites(favorites, collection)
     },
     [state.favorites]
   )

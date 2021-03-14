@@ -1,12 +1,7 @@
 import React from 'react'
 import { Input } from '../../../components/input/Input'
 import { SearchIcon } from '../../../components/svg/icons'
-import styled from 'styled-components'
-
-export const SearchContent = styled.div`
-  width: 300px;
-  padding: 10px;
-`
+import { SearchContent } from './styled'
 
 const Search: React.FC = () => {
   const onSearch = (value) => {

@@ -10,8 +10,6 @@ import sortBy from 'lodash/sortBy'
  *
  */
 export function transformData(collections: ICollection[]): ICollection[] {
-  console.log('collections', collections)
-
   const newCollections = collections.map((collection) => {
     const data = collection.data.map((item) => {
       return {
