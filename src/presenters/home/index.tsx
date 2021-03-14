@@ -6,7 +6,10 @@ import { SectionEnums } from '../../enums/SectionEnums'
 import { Caption, Container, Content, Layout, Title } from './styled'
 import { TSection } from '../../types'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { saveFavorites, selectPreferences } from '../../app/preferencesSlice'
+import {
+    saveFavorites,
+    selectPreferences,
+} from '../../reducers/preferencesSlice'
 
 const background = 'assets/Bg@1X.png'
 

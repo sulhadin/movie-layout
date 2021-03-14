@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from './store'
-import { loadState } from '../store/localStorage'
+import { RootState } from '../app/store'
+import { loadState } from './helpers/localStorage'
 import { LocalStateKey } from '../enums/LocalStateKey'
 
 // Define a type for the slice state

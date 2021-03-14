@@ -5,7 +5,7 @@ import { SectionEnums } from '../../../enums/SectionEnums'
 import { Row, Col } from '../../../components/grid/Grid'
 import { FavoriteButton, ImageContent, ShortInfo, Image } from './styled'
 import { useAppSelector } from '../../../app/hooks'
-import { selectPreferences } from '../../../app/preferencesSlice'
+import { selectPreferences } from '../../../reducers/preferencesSlice'
 
 interface ISection {
     sectionType: SectionEnums

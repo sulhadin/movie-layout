@@ -1,7 +1,7 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 
 import rootReducer from './rootReducer'
-import { saveState } from '../store/localStorage'
+import { saveState } from '../reducers/helpers/localStorage'
 import throttle from 'lodash/throttle'
 import { LocalStateKey } from '../enums/LocalStateKey'
 
