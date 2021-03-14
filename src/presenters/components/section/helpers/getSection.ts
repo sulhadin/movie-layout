@@ -1,52 +1,53 @@
 import MovieApi from '../../../../lib/client/MovieApi'
 import { IMovie, ICollection } from '../../../../types/movie'
-import { SectionEnums } from '../../../../enums/SectionEnums'
-
+import sortBy from 'lodash/sortBy'
 /**
  * Created for generate unique id for each movie item.
  * Since the real data must contain real unique ids, this process will no longer be needed.
  *
- * @param sections
+ * @param collections
  *
  *
  */
-export function transformData(sections: ICollection[]): IMovie[] {
-    console.log('sections', sections)
+export function transformData(collections: ICollection[]): ICollection[] {
+    console.log('collections', collections)
 
-    const movies = getSectionBy(sections, SectionEnums.MOVIES)
-    const series = getSectionBy(sections, SectionEnums.SERIES)
+    const newCollections = collections.map((collection) => {
+        const data = collection.data.map((item) => {
+            return {
+                ...item,
+                uId: `${collection.id}_${item.id}`,
+                type: collection.id,
+            }
+        })
 
-    const transformedMovies = movies.map((movie) => ({
-        ...movie,
-        uId: `${SectionEnums.MOVIES}_${movie.id}`,
-        type: SectionEnums.MOVIES,
-    }))
-    const transformedSeries = series.map((show) => ({
-        ...show,
-        uId: `${SectionEnums.SERIES}_${show.id}`,
-        type: SectionEnums.SERIES,
-    }))
+        return {
+            ...collection,
+            data,
+        }
+    })
 
-    return [...transformedMovies, ...transformedSeries]
+    return sortBy(newCollections, ['order'])
 }
 
-export async function getSections(): Promise<IMovie[]> {
+export async function getSections(): Promise<ICollection[]> {
     const movies = await MovieApi.getSections()
 
     return transformData(movies)
 }
 
-export function getSectionBy(sections, sectionId: SectionEnums): IMovie[] {
-    const result = sections.find(
-        (section) => section.id === sectionId
-    ) as ICollection
-
-    return result.data
-}
-
 export function getFavoritesBy(
-    movies: IMovie[],
+    collections: ICollection[],
     favorites: string[]
 ): IMovie[] {
-    return movies.filter((movie) => favorites.includes(movie.uId))
+    let movies: IMovie[] = []
+
+    collections.forEach((collection) => {
+        movies = [
+            ...movies,
+            ...collection.data.filter((movie) => favorites.includes(movie.uId)),
+        ]
+    })
+
+    return movies
 }

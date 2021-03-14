@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { IMovie } from '../../../types/movie'
+import { ICollection, IMovie } from '../../../types/movie'
 import { getFavoritesBy, getSections } from './helpers/getSection'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import {
@@ -9,32 +9,27 @@ import {
 import { Container } from '../../home/styled'
 import Section from './Section'
 import addOrRemoveFavorite from '../../home/helpers/addOrRemoveFavorite'
-import { ISection } from '../../../types/section'
-import { destructureSections } from './helpers/destructureSections'
 import { Display } from '../../../components/display/Display'
 
 const Sections: React.FC = () => {
-    const [sections, setSections] = useState<ISection>()
-    const [data, setData] = useState<IMovie[]>()
+    const [favoriteData, setFavoriteData] = useState<IMovie[]>([])
+    const [collection, setCollection] = useState<ICollection[]>()
 
     const dispatch = useAppDispatch()
     const state = useAppSelector(selectPreferences)
 
     useEffect(() => {
-        getSections().then(setData)
+        getSections().then(setCollection)
     }, [])
 
     useEffect(() => {
-        if (data) {
-            const result = destructureSections(data, state.favorites)
-            setSections(result)
-        }
-    }, [data])
+        reloadFavorites(state.favorites)
+    }, [collection])
 
     const reloadFavorites = (favorites) => {
-        if (sections && data) {
-            const favoriteList = getFavoritesBy(data, favorites)
-            setSections({ ...sections, favorites: favoriteList })
+        if (collection) {
+            const favoriteList = getFavoritesBy(collection, favorites)
+            setFavoriteData({ ...favorites, favorites: favoriteList })
         }
     }
 
@@ -45,40 +40,28 @@ const Sections: React.FC = () => {
         reloadFavorites(favorites)
     }
 
-    if (!sections) {
+    if (!collection) {
         return <>Loading...</>
     }
 
     return (
         <>
-            {data?.map((d) => (
+            {collection.map((d) => (
                 <Container>
                     <Section
+                        key={d.id}
                         title={d.title}
-                        data={sections.movies}
+                        data={d.data}
                         onItemClick={onItemClick}
                     />
                 </Container>
             ))}
-            <Container>
-                <Section
-                    title={'Filmler'}
-                    data={sections.movies}
-                    onItemClick={onItemClick}
-                />
-            </Container>
-            <Container>
-                <Section
-                    title={'Diziler'}
-                    data={sections.series}
-                    onItemClick={onItemClick}
-                />
-            </Container>
-            <Display display={sections.favorites.length >= 3}>
+
+            <Display display={favoriteData.length >= 3}>
                 <Container>
                     <Section
                         title={'Favoriler'}
-                        data={sections.favorites}
+                        data={favoriteData}
                         onItemClick={onItemClick}
                     />
                 </Container>
