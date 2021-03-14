@@ -7,9 +7,10 @@ import { FavoriteButton, ImageContent, ShortInfo, Image } from './styled'
 
 interface ISection {
     sectionType: SectionEnums
+    onItemClick: (section: TSection) => void
 }
 
-const Section: React.FC<ISection> = ({ sectionType }) => {
+const Section: React.FC<ISection> = ({ sectionType, onItemClick }) => {
     const [section, setSection] = useState<TSection[]>()
 
     useEffect(() => {
@@ -27,7 +28,10 @@ const Section: React.FC<ISection> = ({ sectionType }) => {
             {section.map((item) => (
                 <Col xl={4} md={3} sm={2} key={item.id}>
                     <ImageContent>
-                        <FavoriteButton favorite={true} />
+                        <FavoriteButton
+                            favorite={true}
+                            onClick={() => onItemClick(item)}
+                        />
                         <Image
                             src={`assets/images/${item.image}`}
                             alt={item.subTitle}
