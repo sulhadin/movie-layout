@@ -23,9 +23,9 @@ export default function useSections() {
   }, [])
 
   const reloadFavorites = (favorites, data) => {
-    if (collection) {
+    if (data) {
       const favoriteList = getFavoritesBy(data, favorites)
-      setFavoriteData({ ...favorites, favorites: favoriteList })
+      setFavoriteData(favoriteList)
     }
   }
 
