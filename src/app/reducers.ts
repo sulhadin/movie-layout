@@ -1,4 +1,5 @@
-import movieSlicer from './movieSlicer'
+import preferencesSlice from './preferencesSlice'
+
 export default {
-    movie: movieSlicer,
+    preferences: preferencesSlice,
 }

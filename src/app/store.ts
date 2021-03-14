@@ -1,6 +1,10 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 
 import rootReducer from './rootReducer'
+import { saveState } from '../store/localStorage'
+import throttle from 'lodash/throttle'
+import { LocalStateKey } from '../enums/LocalStateKey'
+
 const middleware = [...getDefaultMiddleware()]
 
 const store = configureStore({
@@ -8,7 +12,17 @@ const store = configureStore({
     middleware,
 })
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
+store.subscribe(
+    throttle(() => {
+        saveState(
+            {
+                preferences: store.getState().preferences,
+            },
+            LocalStateKey.PREFERENCES
+        )
+    }, 1000)
+)
+
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 

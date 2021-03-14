@@ -4,14 +4,19 @@ import getSection from './helpers/getSection'
 import { SectionEnums } from '../../../enums/SectionEnums'
 import { Row, Col } from '../../../components/grid/Grid'
 import { FavoriteButton, ImageContent, ShortInfo, Image } from './styled'
+import { useAppSelector } from '../../../app/hooks'
+import { selectPreferences } from '../../../app/preferencesSlice'
 
 interface ISection {
     sectionType: SectionEnums
     onItemClick: (section: TSection) => void
 }
 
+// Extract render as SectionGrid
+// Build local state
 const Section: React.FC<ISection> = ({ sectionType, onItemClick }) => {
     const [section, setSection] = useState<TSection[]>()
+    const state = useAppSelector(selectPreferences)
 
     useEffect(() => {
         getSection(sectionType).then((response) => {
@@ -29,7 +34,7 @@ const Section: React.FC<ISection> = ({ sectionType, onItemClick }) => {
                 <Col xl={4} md={3} sm={2} key={item.id}>
                     <ImageContent>
                         <FavoriteButton
-                            favorite={true}
+                            favorite={state.favorites.includes(item.id)}
                             onClick={() => onItemClick(item)}
                         />
                         <Image

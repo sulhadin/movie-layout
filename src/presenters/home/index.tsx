@@ -6,20 +6,25 @@ import { SectionEnums } from '../../enums/SectionEnums'
 import { Caption, Container, Content, Layout, Title } from './styled'
 import { TSection } from '../../types'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { incrementByAmount, selectMovie } from '../../app/movieSlicer'
+import { saveFavorites, selectPreferences } from '../../app/preferencesSlice'
 
 const background = 'assets/Bg@1X.png'
 
 const Home: React.FC = () => {
     const dispatch = useAppDispatch()
-
-    const state = useAppSelector(selectMovie)
+    const state = useAppSelector(selectPreferences)
 
     console.log('state', state)
     const onItemClick = (section: TSection) => {
-        console.log(section)
+        let favorites = [...state.favorites]
 
-        dispatch(incrementByAmount(2))
+        if (state.favorites.includes(section.id)) {
+            favorites = [...favorites.filter((id) => id !== section.id)]
+        } else {
+            favorites.push(section.id)
+        }
+
+        dispatch(saveFavorites(favorites))
     }
 
     return (
