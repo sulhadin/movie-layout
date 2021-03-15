@@ -71,4 +71,5 @@ Landing page accommodates under `home` as `index.tsx`.
 ## TODO
 - Tests
 - Server Side Rendering (SSR)
+- [react-query](https://react-query.tanstack.com/) implementation for proper caching management and network manager.
 - Dependency inversion implementation for [HttpClient](./src/lib/client/HttpClient.ts)
