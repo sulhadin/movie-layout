@@ -1,9 +1,9 @@
 import React from 'react'
 
 import Section from './Section'
-import { Container } from '../../home/styled/styled'
 import { Display } from '../../../components/display/Display'
 import useSections from './hooks/useSections'
+import MainSection from './components/MainSection'
 
 const Sections: React.FC = () => {
   const { favoriteData, collection, onItemClick } = useSections()
@@ -14,16 +14,10 @@ const Sections: React.FC = () => {
 
   return (
     <>
-      {collection.map((d) => (
-        <Container key={d.id}>
-          <Section title={d.title} data={d.data} onItemClick={onItemClick} />
-        </Container>
-      ))}
+      <MainSection collection={collection} onItemClick={onItemClick} />
 
       <Display display={favoriteData.length >= 3}>
-        <Container>
-          <Section title="Favoriler" data={favoriteData} onItemClick={onItemClick} />
-        </Container>
+        <Section title="Favoriler" data={favoriteData} onItemClick={onItemClick} />
       </Display>
     </>
   )
