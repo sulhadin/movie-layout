@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import Section from '../Section'
+import Section from './Section'
 import { ICollection, IMovie } from '../../../../types/movie'
 
 interface IMainSection {

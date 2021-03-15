@@ -1,11 +1,11 @@
 import React from 'react'
 
-import Section from './Section'
+import Section from './components/Section'
 import { Display } from '../../../components/display/Display'
 import useSections from './hooks/useSections'
 import MainSection from './components/MainSection'
 
-const Sections: React.FC = () => {
+const SectionContainer: React.FC = () => {
   const { favoriteData, collection, onItemClick } = useSections()
 
   if (!collection) {
@@ -23,4 +23,4 @@ const Sections: React.FC = () => {
   )
 }
 
-export default Sections
+export default SectionContainer

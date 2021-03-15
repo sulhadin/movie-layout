@@ -1,11 +1,11 @@
 import React, { memo } from 'react'
-import { IMovie } from '../../../types/movie'
-import { Row, Col } from '../../../components/grid/Grid'
-import { FavoriteButton, ImageContent, ShortInfo, Image } from './styled'
-import { useAppSelector } from '../../../store/helpers/hooks'
-import { selectPreferences } from '../../../store/preferencesStore'
-import { Container, Title } from '../../home/styled/styled'
-import { getYear } from './hooks/helpers/getYear'
+import { IMovie } from '../../../../types/movie'
+import { Row, Col } from '../../../../components/grid/Grid'
+import { FavoriteButton, ImageContent, ShortInfo, Image } from '../styled'
+import { useAppSelector } from '../../../../store/helpers/hooks'
+import { selectPreferences } from '../../../../store/preferencesStore'
+import { Container, Title } from '../../../home/styled'
+import { getYear } from '../hooks/helpers/getYear'
 
 interface ISection {
   data: IMovie[]
