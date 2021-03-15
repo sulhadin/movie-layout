@@ -9,7 +9,7 @@ class MovieApi extends HttpClient {
 
   public getMenus = () => this.instance.get<TMenu[]>('/menu.json')
 
-  public getSections = () => this.instance.get<ICollection[]>('/sections.json')
+  public getCollections = () => this.instance.get<ICollection[]>('/sections.json')
 }
 
 const movieApi = new MovieApi()

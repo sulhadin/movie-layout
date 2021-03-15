@@ -1,7 +1,6 @@
 export interface IMovie {
   id: number
   uId: string
-  type: string
   image: string
   published_date: string
   subTitle: string
