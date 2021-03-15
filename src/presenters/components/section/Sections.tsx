@@ -22,11 +22,7 @@ const Sections: React.FC = () => {
 
       <Display display={favoriteData.length >= 3}>
         <Container>
-          <Section
-            title={'Favoriler'}
-            data={favoriteData}
-            onItemClick={onItemClick}
-          />
+          <Section title="Favoriler" data={favoriteData} onItemClick={onItemClick} />
         </Container>
       </Display>
     </>

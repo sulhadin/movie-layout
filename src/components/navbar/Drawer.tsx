@@ -7,16 +7,14 @@ interface IDrawer {
   items: TMenu[]
 }
 
-const Drawer: React.FC<IDrawer> = ({ open, items }) => {
-  return (
-    <MenuUl open={open}>
-      {items.map((item) => (
-        <li key={item.url}>
-          <a href={item.url}>{item.title}</a>
-        </li>
-      ))}
-    </MenuUl>
-  )
-}
+const Drawer: React.FC<IDrawer> = ({ open, items }) => (
+  <MenuUl open={open}>
+    {items.map((item) => (
+      <li key={item.url}>
+        <a href={item.url}>{item.title}</a>
+      </li>
+    ))}
+  </MenuUl>
+)
 
 export default Drawer

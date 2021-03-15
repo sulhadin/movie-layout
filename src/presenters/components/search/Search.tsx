@@ -10,7 +10,7 @@ const Search: React.FC = () => {
 
   return (
     <SearchContent>
-      <Input icon={<SearchIcon />} callback={onSearch} placeholder={'Arama'} />
+      <Input icon={<SearchIcon />} callback={onSearch} placeholder="Arama" />
     </SearchContent>
   )
 }

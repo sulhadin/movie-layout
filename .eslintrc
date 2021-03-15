@@ -1,45 +1,71 @@
 {
-  "extends": ["airbnb-base", "prettier"],
-  "env": {
-    "es2021": true,
-    "node": true,
-  },
+  "plugins": ["prettier", "@typescript-eslint"],
+  "extends": ["airbnb-typescript", "react-app", "prettier"],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 12,
+    "project": "./tsconfig.json",
+    "sourceType": "module",
+    "ecmaVersion": 2020, // Allows for the parsing of modern ECMAScript features
+    "ecmaFeatures": {
+      "jsx": true // Allows for the parsing of JSX
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
   },
   "rules": {
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": ["error"],
-    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
-    "import/extensions": [
-      "error",
-      "ignorePackages",
+    "object-curly-spacing": ["warn", "always"],
+    "no-unused-vars": [
+      "warn",
       {
-        "js": "never",
-        "mjs": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
+        "vars": "all",
+        "args": "none"
       }
     ],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "none"
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": [
+      "error",
+      {
+        "ignoreRestArgs": true
+      }
+    ],
+    "react/jsx-key": "error",
+    "no-underscore-dangle": "off",
+    "no-console": "off",
+    "no-param-reassign": [2, {"props": false}],
     "import/no-extraneous-dependencies": [
       "error",
       {
         "devDependencies": [
-          "jest-*.js",
-          "src/**/*.test.tsx"
+          "**/*.test.js",
+          "**/*.test.jsx",
+          "**/*.test.ts",
+          "**/*.test.tsx",
+          "src/tests/**/*"
         ]
       }
     ],
-    "react/jsx-props-no-spreading": "off"
-  },
-  "overrides": [
-    {
-      "files": ["*.test.tsx"],
-      "rules": {
-        "@typescript-eslint/no-explicit-any": "off",
-        "no-console": "off"
-      }
-    }
-  ]
+    "react/jsx-props-no-spreading": "off",
+    "import/prefer-default-export": "off",
+    "react/jsx-boolean-value": "off",
+    "react/prop-types": "off",
+    "react/no-unescaped-entities": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-wrap-multilines": "off",
+    "react/destructuring-assignment": "off",
+    "import/no-anonymous-default-export": "off"
+  }
 }

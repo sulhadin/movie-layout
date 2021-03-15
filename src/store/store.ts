@@ -1,8 +1,8 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 
+import throttle from 'lodash/throttle'
 import rootReducer from './rootReducer'
 import { saveState } from './helpers/localStorage'
-import throttle from 'lodash/throttle'
 import { LocalStateKey } from '../enums/LocalStateKey'
 
 const middleware = [...getDefaultMiddleware()]
@@ -19,9 +19,9 @@ store.subscribe(
       {
         preferences: store.getState().preferences,
       },
-      LocalStateKey.PREFERENCES
+      LocalStateKey.PREFERENCES,
     )
-  }, 1000)
+  }, 1000),
 )
 
 export type RootState = ReturnType<typeof store.getState>

@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from './store'
 import { loadState } from './helpers/localStorage'
 import { LocalStateKey } from '../enums/LocalStateKey'
-import { Preferences, PreferenceState } from '../types/preferences'
+import type { Preferences, PreferenceState } from '../types/preferences'
+import type { RootState } from './store'
 
 // Gets local state to initialize the first state.
 const persistedState = loadState<Preferences>(LocalStateKey.PREFERENCES)
