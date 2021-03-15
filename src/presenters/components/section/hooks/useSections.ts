@@ -3,14 +3,17 @@ import { useCallback, useEffect, useState } from 'react'
 import { ICollection, IMovie } from '../../../../types/movie'
 import { getFavoritesBy, getSections } from './helpers/getSection'
 import { useAppDispatch, useAppSelector } from '../../../../store/helpers/hooks'
-import { saveFavorite, selectPreferences } from '../../../../store/preferencesStore'
+import { saveFavorite as saveFavoriteAction, selectPreferences } from '../../../../store/preferencesStore'
 import addOrRemoveFavorite from '../../../home/helpers/addOrRemoveFavorite'
 
 export default function useSections() {
   const [favoriteData, setFavoriteData] = useState<IMovie[]>([])
   const [collection, setCollection] = useState<ICollection[]>()
-  const dispatch = useAppDispatch()
+
   const state = useAppSelector(selectPreferences)
+
+  const dispatch = useAppDispatch()
+  const saveFavorite = useCallback((payload) => dispatch(saveFavoriteAction(payload)), [])
 
   useEffect(() => {
     getSections().then((response) => {
@@ -30,10 +33,10 @@ export default function useSections() {
     (movie: IMovie) => {
       const favorites = addOrRemoveFavorite(state.favorites, movie.uId)
 
-      dispatch(saveFavorite(favorites))
+      saveFavorite(favorites)
       reloadFavorites(favorites, collection)
     },
-    [state.favorites, collection, dispatch],
+    [state.favorites, collection],
   )
 
   return {
