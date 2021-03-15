@@ -64,7 +64,7 @@ That are `useEffect`,  `useCallback`, `useMemo`
     └── types
 
 ````
-In this structure presenter based helper and component folder structure is adopted.
+In this structure, presenter based helper and component folder structure is adopted.
 Every main component has its on `components`, `helpers`, `styled` next to it.
 Landing page accommodates under `home` as `index.tsx`. 
  
