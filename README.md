@@ -5,8 +5,8 @@ Responsive design is adopted.
 
 ## How to Run
 ```shell
-yarn i
 yarn install
+yarn start
 ```
 
 ## About
