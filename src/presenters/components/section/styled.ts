@@ -66,8 +66,16 @@ export const ImageContent = styled.div`
     cursor: pointer;
   }
 
-  &:hover ${Image} {
-    opacity: 0.5;
-    background: black;
+  &:hover ${this} {
+    &:after {
+      content: '';
+      background: #000;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      opacity: 0.5;
+    }
   }
 `
